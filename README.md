@@ -14,6 +14,38 @@ Os assistentes virtuais no setor financeiro estão evoluindo de simples chatbots
 
 ---
 
+## 🚀 Como Executar o Projeto
+
+Este projeto utiliza **Docker** para orquestrar a aplicação (Streamlit) e o modelo de IA local (Ollama).
+
+1. **Subir o ambiente:**
+   ```bash
+   docker-compose up -d --build
+   ```
+   > **Nota:** O comando acima também executará automaticamente a suíte de testes (`pytest`). Aguarde alguns segundos após a subida do container.
+
+2. **Baixar o modelo de IA (apenas na primeira vez):**
+   ```bash
+   docker exec -it ollama_server ollama pull llama3
+   ```
+
+3. **Acessar a Aplicação:**
+   - Abra seu navegador em: http://localhost:8501
+
+---
+
+## ✅ Testes e Validação
+
+O projeto inclui um pipeline de testes automatizados para garantir a confiabilidade do agente.
+
+- **Execução:** Os testes rodam automaticamente na inicialização do container.
+- **Relatório:** Um relatório detalhado em HTML é gerado em `docs/report.html`.
+- **Cenários Cobertos:**
+  1. **Consulta de Gastos:** Valida leitura e processamento do CSV.
+  2. **Recomendação:** Verifica se produtos sugeridos constam no JSON.
+  3. **Anti-Alucinação:** Garante que o agente não invente dados.
+  4. **Escopo:** Confirma recusa de perguntas não financeiras.
+
 ## O Que Você Deve Entregar
 
 ### 1. Documentação do Agente
@@ -114,6 +146,9 @@ Todas as ferramentas abaixo possuem versões gratuitas:
 📁 lab-agente-financeiro/
 │
 ├── 📄 README.md
+├── 📄 Dockerfile                     # Definição da imagem da aplicação
+├── 📄 docker-compose.yml             # Orquestração dos serviços (App + Ollama)
+├── 📄 test_agente.py                 # Script de testes automatizados (Pytest)
 │
 ├── 📁 data/                          # Dados mockados para o agente
 │   ├── historico_atendimento.csv     # Histórico de atendimentos (CSV)
@@ -126,6 +161,7 @@ Todas as ferramentas abaixo possuem versões gratuitas:
 │   ├── 02-base-conhecimento.md       # Estratégia de dados
 │   ├── 03-prompts.md                 # Engenharia de prompts
 │   ├── 04-metricas.md                # Avaliação e métricas
+│   ├── report.html                   # Relatório de testes (gerado automaticamente)
 │   └── 05-pitch.md                   # Roteiro do pitch
 │
 ├── 📁 src/                           # Código da aplicação

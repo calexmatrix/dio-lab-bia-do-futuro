@@ -20,7 +20,7 @@ Descreva se usou os arquivos da pasta `data`, por exemplo:
 
 > Você modificou ou expandiu os dados mockados? Descreva aqui.
 
-[Sua descrição aqui]
+Foram utilizados os dados mockados padrão fornecidos no desafio. O arquivo `transacoes.csv` é processado pelo Pandas para garantir que a coluna de datas seja interpretada corretamente, permitindo filtragem temporal na interface.
 
 ---
 
@@ -29,12 +29,14 @@ Descreva se usou os arquivos da pasta `data`, por exemplo:
 ### Como os dados são carregados?
 > Descreva como seu agente acessa a base de conhecimento.
 
-[ex: Os JSON/CSV são carregados no início da sessão e incluídos no contexto do prompt]
+Os arquivos são carregados localmente via Python (bibliotecas `pandas` e `json`) no início da execução do Streamlit. O container Docker possui um volume mapeado para a pasta `data/`, permitindo acesso direto aos arquivos.
 
 ### Como os dados são usados no prompt?
 > Os dados vão no system prompt? São consultados dinamicamente?
 
-[Sua descrição aqui]
+Os dados são injetados diretamente no **System Prompt** (contexto inicial do modelo) antes do início da conversa:
+- **Transações:** São processadas para gerar um resumo financeiro agrupado por categoria (ex: "Alimentação: R$ 570,00"), que é inserido no prompt.
+- **Perfil e Produtos:** O conteúdo dos arquivos JSON é convertido para texto e anexado ao prompt, permitindo que o agente consulte as regras de perfil e a lista de produtos permitidos para recomendações controladas.
 
 ---
 

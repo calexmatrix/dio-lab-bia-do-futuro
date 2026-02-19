@@ -29,22 +29,22 @@ Crie testes simples para validar seu agente:
 ### Teste 1: Consulta de gastos
 - **Pergunta:** "Quanto gastei com alimentação?"
 - **Resposta esperada:** Valor baseado no `transacoes.csv`
-- **Resultado:** [ ] Correto  [ ] Incorreto
+- **Resultado:** [x] Correto  [ ] Incorreto
 
 ### Teste 2: Recomendação de produto
 - **Pergunta:** "Qual investimento você recomenda para mim?"
 - **Resposta esperada:** Produto compatível com o perfil do cliente
-- **Resultado:** [ ] Correto  [ ] Incorreto
+- **Resultado:** [x] Correto  [ ] Incorreto
 
 ### Teste 3: Pergunta fora do escopo
 - **Pergunta:** "Qual a previsão do tempo?"
 - **Resposta esperada:** Agente informa que só trata de finanças
-- **Resultado:** [ ] Correto  [ ] Incorreto
+- **Resultado:** [x] Correto  [ ] Incorreto
 
 ### Teste 4: Informação inexistente
 - **Pergunta:** "Quanto rende o produto XYZ?"
 - **Resposta esperada:** Agente admite não ter essa informação
-- **Resultado:** [ ] Correto  [ ] Incorreto
+- **Resultado:** [x] Correto  [ ] Incorreto
 
 ---
 
@@ -53,10 +53,12 @@ Crie testes simples para validar seu agente:
 Após os testes, registre suas conclusões:
 
 **O que funcionou bem:**
-- [Liste aqui]
+- As quatro perguntas de teste (Consulta de gastos, Recomendação de produto, Pergunta fora do escopo e Informação inexistente) funcionaram corretamente, validando a lógica do agente.
+- A integração com a base de conhecimento (CSV e JSON) permitiu respostas contextualizadas e precisas.
 
 **O que pode melhorar:**
-- [Liste aqui]
+- Implementar filtros interativos de data na interface para refinar a análise de gastos por período.
+- Adicionar um sistema de autenticação para suportar múltiplos usuários e perfis de investidor distintos.
 
 ---
 
@@ -64,8 +66,10 @@ Após os testes, registre suas conclusões:
 
 Para quem quer explorar mais, algumas métricas técnicas de observabilidade também podem fazer parte da sua solução, como:
 
-- Latência e tempo de resposta;
-- Consumo de tokens e custos;
-- Logs e taxa de erros.
+- **Latência e tempo de resposta:** Tempo decorrido entre o envio do prompt e a resposta completa. No contexto local (Ollama), depende diretamente do hardware (CPU/GPU).
+- **Consumo de tokens:** Monitoramento da quantidade de tokens de entrada (prompt + contexto) e saída (resposta). Essencial para estimativa de custos caso migre para API paga (OpenAI). No caso estou usando em ambiente local com o Docker.
+- **Logs e taxa de erros:** Acompanhamento de falhas na leitura de arquivos (`transacoes.csv`, `perfil_investidor.json`) ou erros de conexão com o serviço de LLM via Docker logs.
+
+
 
 Ferramentas especializadas em LLMs, como [LangWatch](https://langwatch.ai/) e [LangFuse](https://langfuse.com/), são exemplos que podem ajudar nesse monitoramento. Entretanto, fique à vontade para usar qualquer outra que você já conheça!
